@@ -1,0 +1,3 @@
+integrator:
+  build: .
+  restart: always
