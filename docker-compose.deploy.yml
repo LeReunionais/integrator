@@ -1,0 +1,2 @@
+integrator:
+    image: $DOCKER_REGISTRY/integrator:$SERVICE_VERSION
