@@ -5,13 +5,13 @@ package entities;
  */
 public class Work {
     private Particle particle;
-    private long delta;
+    private double delta;
 
     public Particle getParticle() {
         return particle;
     }
 
-    public long getDelta() {
+    public double getDelta() {
         return delta;
     }
 }

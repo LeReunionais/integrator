@@ -57,6 +57,7 @@ public class Requester {
 
         ZMQ.Socket socket = context.createSocket(ZMQ.REQ);
         socket.connect("tcp://192.168.99.100:6001");
+
         while (true) {
             System.out.println("Sending message");
             socket.send(ready_json, 0);

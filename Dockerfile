@@ -8,6 +8,6 @@ RUN mvn dependency:resolve-plugins
 RUN mvn verify
 
 ADD src /service/src
-RUN mvn package
+RUN mvn compile assembly:single
 
 CMD java -jar target/Integrator-1.0-SNAPSHOT-jar-with-dependencies.jar
