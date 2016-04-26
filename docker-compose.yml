@@ -1,3 +1,9 @@
 integrator:
   build: .
   restart: always
+test:
+  build: .
+  command: echo "No tests defined"
+coverage:
+  build: .
+  command: echo "No coverage"
