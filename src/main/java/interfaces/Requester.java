@@ -5,6 +5,9 @@ import entities.Particle;
 import entities.Work;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
+import registry.Registry;
+import registry.RegistryJson;
+import registry.Service;
 import updator.SimpleUpdator;
 
 import java.util.UUID;
@@ -14,6 +17,7 @@ import java.util.UUID;
  */
 public class Requester {
     private final Gson gson = new Gson();
+    private final Registry registry = new RegistryJson("tcp://192.168.0.103:3002");
 
     private class ReadyRequest {
         private final String jsonrpc = "2.0";
@@ -56,7 +60,8 @@ public class Requester {
         SimpleUpdator simpleUpdator = new SimpleUpdator();
 
         ZMQ.Socket socket = context.createSocket(ZMQ.REQ);
-        socket.connect("tcp://192.168.99.100:6001");
+        Service integrator = registry.whereis("integrator");
+        socket.connect(integrator.getEndpoint());
 
         while (true) {
             System.out.println("Sending message");

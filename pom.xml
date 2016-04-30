@@ -68,7 +68,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>service.Service</mainClass>
+                            <mainClass>entry.EntryPoint</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

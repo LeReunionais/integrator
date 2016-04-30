@@ -2,6 +2,7 @@ package interfaces;
 
 
 import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * Created on 4/24/16.
