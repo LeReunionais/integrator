@@ -2,7 +2,6 @@ package interfaces;
 
 
 import org.junit.Ignore;
-import org.junit.Test;
 
 /**
  * Created on 4/24/16.
@@ -10,7 +9,7 @@ import org.junit.Test;
 public class RequesterTest {
     @Ignore
     public void run() throws Exception {
-        Requester requester = new Requester();
+        Requester requester = new Requester(registry);
         requester.run();
     }
 

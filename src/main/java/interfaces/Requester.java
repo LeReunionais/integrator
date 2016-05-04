@@ -6,7 +6,6 @@ import entities.Work;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 import registry.Registry;
-import registry.RegistryJson;
 import registry.Service;
 import updator.SimpleUpdator;
 
@@ -17,7 +16,11 @@ import java.util.UUID;
  */
 public class Requester {
     private final Gson gson = new Gson();
-    private final Registry registry = new RegistryJson("tcp://192.168.0.103:3002");
+    private final Registry registry;
+
+    public Requester(Registry registry) {
+        this.registry = registry;
+    }
 
     private class ReadyRequest {
         private final String jsonrpc = "2.0";

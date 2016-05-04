@@ -1,4 +1,6 @@
 integrator:
+  environment:
+    REGISTRY_HOST:
   build: .
   restart: always
 test:
