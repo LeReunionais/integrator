@@ -3,6 +3,7 @@ package interfaces;
 import com.google.gson.Gson;
 import entities.Particle;
 import entities.Work;
+import entities.WorkResult;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 import registry.Registry;
@@ -34,27 +35,28 @@ public class Requester {
         }
     }
 
+    private class ReadyReply {
+        private final String jsonrpc = "2.0";
+        private Work result;
+        private UUID id;
+
+        Work getWork() {
+            return result;
+        }
+    }
+
     private class ResultRequest {
         private final String jsonrpc = "2.0";
         private final String method = "result";
-        private Particle params;
-        private UUID id;
+        private final WorkResult params;
+        private final UUID id;
 
-        public ResultRequest(Particle params, UUID id) {
+        ResultRequest(WorkResult params, UUID id) {
             this.params = params;
             this.id = id;
         }
     }
 
-    private class ReplyMessage {
-        private final String jsonrpc = "2.0";
-        private Work result;
-        private UUID id;
-
-        public Work getWork() {
-            return result;
-        }
-    }
 
     public void run() {
         ZContext context = new ZContext();
@@ -72,11 +74,12 @@ public class Requester {
             System.out.println("Waiting for reply");
             String message = socket.recvStr(0);
             System.out.println(message);
-            ReplyMessage reply_message = gson.fromJson(message, ReplyMessage.class);
+            ReadyReply reply_message = gson.fromJson(message, ReadyReply.class);
             System.out.println(reply_message);
 
             Particle particle_updated = simpleUpdator.update(reply_message.getWork());
-            ResultRequest result_request = new ResultRequest(particle_updated, reply_message.id);
+            WorkResult params = new WorkResult(particle_updated, reply_message.getWork().getWorkId());
+            ResultRequest result_request = new ResultRequest(params, reply_message.id);
             String result_request_json = gson.toJson(result_request);
             System.out.println("Sending result");
             socket.send(result_request_json, 0);

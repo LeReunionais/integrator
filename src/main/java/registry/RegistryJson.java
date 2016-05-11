@@ -37,14 +37,14 @@ public class RegistryJson implements Registry {
 
     static class FindResponse {
         private final String jsonrpc = "2.0";
-        private final String result;
+        private final Service result;
         private final UUID id;
 
-        public String getResult() {
+        public Service getResult() {
             return result;
         }
 
-        FindResponse(String service, UUID id) {
+        FindResponse(Service service, UUID id) {
             this.result = service;
             this.id = id;
         }
@@ -65,8 +65,7 @@ public class RegistryJson implements Registry {
         socket.close();
 
         FindResponse response  = gson.fromJson(replyStr, FindResponse.class);
-        Service service = gson.fromJson(response.getResult(), Service.class);
 
-        return service;
+        return response.getResult();
     }
 }

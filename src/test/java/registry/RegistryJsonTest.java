@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class RegistryJsonTest {
     private final Gson gson = new Gson();
-    @Ignore
+    @Test
     public void whereis() throws Exception {
         ZContext context = new ZContext();
         ZMQ.Socket socket = context.createSocket(ZMQ.REP);
