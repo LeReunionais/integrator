@@ -57,5 +57,6 @@
     <orderEntry type="library" name="Maven: org.apache.maven:maven-artifact:2.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven:maven-model:2.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-repository-builder:1.0-alpha-2" level="project" />
+    <orderEntry type="library" name="Maven: com.github.LeReunionais:jervice:v1.0" level="project" />
   </component>
 </module>
